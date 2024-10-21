@@ -15,6 +15,7 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Models
         [Required]
         public string Ciudad { get; set; }
         public int titulos { get; set; }
+        
         public bool AceptaExtranjeros { get; set; }
 
         public Estadio? Estadio { get; set; }

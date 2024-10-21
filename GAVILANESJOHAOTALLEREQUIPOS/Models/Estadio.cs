@@ -12,7 +12,8 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Models
         public string Direccion { get; set; }
         public string Ciudad { get; set; }
         public int Capacidad { get; set; }
-
+        [Required]
+        [MaxLength(50)]
         public string Nombre { get; set; }
     }
 }
