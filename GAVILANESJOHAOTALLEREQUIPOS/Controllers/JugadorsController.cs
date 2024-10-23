@@ -18,11 +18,18 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
             _context = context;
         }
 
-        // GET: Jugadors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? equipoId)
         {
-            var tallergavilanesContext = _context.Jugador.Include(j => j.Equipo);
-            return View(await tallergavilanesContext.ToListAsync());
+            ViewBag.Equipos = new SelectList(await _context.Equipoligapro.ToListAsync(), "Id", "Nombre");
+
+            var jugadores = _context.Jugador.Include(j => j.Equipo).AsQueryable();
+
+            if (equipoId.HasValue && equipoId.Value > 0)
+            {
+                jugadores = jugadores.Where(j => j.IdEquipo == equipoId.Value);
+            }
+
+            return View(await jugadores.ToListAsync());
         }
 
         // GET: Jugadors/Details/5
@@ -47,13 +54,12 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
         // GET: Jugadors/Create
         public IActionResult Create()
         {
-            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Ciudad");
+            // Cambiar "Ciudad" por "Nombre"
+            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Nombre");
             return View();
         }
 
         // POST: Jugadors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdJugador,Nombre,Posicion,Edad,IdEquipo")] Jugador jugador)
@@ -64,7 +70,8 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Ciudad", jugador.IdEquipo);
+            // Cambiar "Ciudad" por "Nombre"
+            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Nombre", jugador.IdEquipo);
             return View(jugador);
         }
 
@@ -81,13 +88,12 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Ciudad", jugador.IdEquipo);
+            // Cambiar "Ciudad" por "Nombre"
+            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Nombre", jugador.IdEquipo);
             return View(jugador);
         }
 
         // POST: Jugadors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdJugador,Nombre,Posicion,Edad,IdEquipo")] Jugador jugador)
@@ -117,7 +123,8 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Ciudad", jugador.IdEquipo);
+            // Cambiar "Ciudad" por "Nombre"
+            ViewData["IdEquipo"] = new SelectList(_context.Equipoligapro, "Id", "Nombre", jugador.IdEquipo);
             return View(jugador);
         }
 
@@ -161,3 +168,4 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
         }
     }
 }
+

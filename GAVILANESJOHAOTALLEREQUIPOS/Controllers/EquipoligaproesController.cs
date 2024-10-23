@@ -47,13 +47,11 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
         // GET: Equipoligaproes/Create
         public IActionResult Create()
         {
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "IdEstadio");
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre"); // Cambiado a "Nombre"
             return View();
         }
 
         // POST: Equipoligaproes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Ciudad,titulos,AceptaExtranjeros,IdEstadio")] Equipoligapro equipoligapro)
@@ -64,7 +62,7 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "IdEstadio", equipoligapro.IdEstadio);
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); // Cambiado a "Nombre"
             return View(equipoligapro);
         }
 
@@ -81,13 +79,11 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "IdEstadio", equipoligapro.IdEstadio);
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); // Cambiado a "Nombre"
             return View(equipoligapro);
         }
 
         // POST: Equipoligaproes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Ciudad,titulos,AceptaExtranjeros,IdEstadio")] Equipoligapro equipoligapro)
@@ -117,7 +113,7 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "IdEstadio", equipoligapro.IdEstadio);
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); // Cambiado a "Nombre"
             return View(equipoligapro);
         }
 
