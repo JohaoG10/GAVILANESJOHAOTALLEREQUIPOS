@@ -7,7 +7,7 @@
 <h1>EQUIPOS LIGA PRO</h1>
 
 <p>
-    <a class=" btn btn-primary" asp-action="Create">Create New</a>
+    <a class=" btn btn-primary" asp-action="Create">CREAR UN NUEVO EQUIPO</a>
 
 </p>
 <table class="table">
@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.AceptaExtranjeros)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estadio.IdEstadio)
+                @Html.DisplayFor(modelItem => item.Estadio.Nombre)
             </td>
             <td>
                 <a class ="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
