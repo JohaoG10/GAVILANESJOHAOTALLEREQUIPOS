@@ -62,7 +62,7 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); // Cambiado a "Nombre"
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio);
             return View(equipoligapro);
         }
 
@@ -79,7 +79,7 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); // Cambiado a "Nombre"
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); 
             return View(equipoligapro);
         }
 
@@ -113,7 +113,7 @@ namespace GAVILANESJOHAOTALLEREQUIPOS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); // Cambiado a "Nombre"
+            ViewData["IdEstadio"] = new SelectList(_context.Set<Estadio>(), "IdEstadio", "Nombre", equipoligapro.IdEstadio); 
             return View(equipoligapro);
         }
 
